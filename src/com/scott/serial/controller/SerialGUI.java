@@ -147,7 +147,7 @@ public class SerialGUI extends JFrame {
 			parameters[4] = portList.getSelectedItem().toString();
 			serialController.initialize(parameters);
 			listener = new WatcherThread();
-			new Thread(listener).start();
+			listener.start();
 		}
 
 		@Override
@@ -167,8 +167,9 @@ public class SerialGUI extends JFrame {
 						serialController.closeConnection();
 						connect.setText("Connect");
 						messages.setText("Connection Status: " + serialController.getStatus());
+						listener.join();
 					}
-				} catch (IllegalArgumentException error) {
+				} catch (IllegalArgumentException | InterruptedException error) {
 					messages.setText(error.getMessage());
 				}
 			}

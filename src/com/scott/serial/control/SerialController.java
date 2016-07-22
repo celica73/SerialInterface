@@ -44,7 +44,7 @@ public class SerialController {
 
 	/**
 	 * Writes data to the log file.
-	 * @param data sting to be written.
+	 * @param data string to be written.
 	 */
 	public void writeData(String data){
 		if (getStatus())
